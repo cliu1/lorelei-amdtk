@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+
+import argparse
+import os
+import amdtk
+import numpy as np
+
+def MFCC_num_frams(name,MFCC_path):
+    feature_file=name+".fea"
+    #mfcc=amdtk.readHtk(MFCC_path + '/' + feature_file)
+    mfcc=amdtk.readKaldi(MFCC_path + '/' + feature_file)
+    return mfcc.shape[0]
+
+def readLabel(map_dict,Label,kaldi_1best, MFCC_path,sampPeriod=100000):
+    
+    num_frame=0
+    total_num_frame=0
+    name=os.path.splitext(os.path.basename(Label))[0]
+    print ("Label fils is : " + name)
+    with open(Label,'r') as f:
+        line=f.readlines()
+        for key in line:
+            tokens=key.split()
+            print ("lab is: " + str(line))
+            if not len(tokens) == 3:
+               # print ("lab contains: " + str(len(tokens)))
+                raise ValueError('Invalid Mlf')
+            else:
+                num_frame=num_frame + int(int(tokens[1])/sampPeriod - int(tokens[0])/sampPeriod)
+                for frame in range(int(int(tokens[1])/sampPeriod -int(tokens[0])/sampPeriod)):
+                    #if tokens[2] == 'sil':
+                    #   label='0'
+                    #else:
+                    #   label=tokens[2][1:]
+                    label=map_dict[tokens[2]]
+                    kaldi_1best.write(' [ '+ label + ' 1 ]')
+                total_num_frame= total_num_frame + num_frame
+        if (MFCC_num_frams(name,MFCC_path) == num_frame +1):
+            print ("mfcc: " + str(MFCC_num_frams(name,MFCC_path)) +  " frames, post: " + str(num_frame) +  " frames")
+            kaldi_1best.write(' [ ' + label + ' 1 ]')
+        kaldi_1best.write('\n')
+
+    return total_num_frame
+
+def main():
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mapfile',help='map label string to int index')
+    parser.add_argument('htk_label',help='AUD label file, *.lab')
+    parser.add_argument('kaldi_1best',help='Kaldi format 1best post, *.post')
+    parser.add_argument('mfcc_path',help='MFCC path with *.htk file')
+
+    args = parser.parse_args()
+
+
+    name=os.path.splitext(os.path.basename(args.htk_label))[0]
+    k1best= open(args.kaldi_1best,'w')
+    k1best.write(name)
+
+
+   # map_file=open(args.mapfile,'r')
+    map_dict={}
+    for ii, line in enumerate(open(args.mapfile,"r")):
+        map_dict[line.split()[0]]=line.split()[1]
+        #print ("key is : " + line.split()[0])
+
+
+
+    total_num_frame= readLabel(map_dict,args.htk_label,k1best,args.mfcc_path)
+    print(total_num_frame)
+
+if __name__ == '__main__':
+   main()
+else:
+    raise ImportError('This script cannot be imported')
