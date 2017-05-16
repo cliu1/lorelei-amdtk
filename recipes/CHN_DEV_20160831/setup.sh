@@ -9,7 +9,6 @@
 ############################################################################
 # Directories.                                                             #
 ############################################################################
-db_path=/export/corpora/LDC/LDC93S1/timit/TIMIT  
 root=$(pwd -P)  
 
 ############################################################################
@@ -20,7 +19,8 @@ root=$(pwd -P)
 #   * local
 #   * sge
 #   * openccs.
-export AMDTK_PARALLEL_ENV="sge"
+#export AMDTK_PARALLEL_ENV="sge"
+export AMDTK_PARALLEL_ENV="local"
 
 parallel_n_core=100
 parallel_profile="--profile $root/path.sh"
@@ -34,11 +34,12 @@ queues="all.q"
 ############################################################################
 # Features settings.                                                       #
 ############################################################################
-scp=${root}/data/all.scp
+#scp=${root}/data/all.scp
 fea_ext='fea'
-fea_type=mfcc
+#fea_type=mfcc
+fea_type=bn
 fea_dir=$root/$fea_type  
-fea_conf=$root/conf/$fea_type.cfg
+#fea_conf=$root/conf/$fea_type.cfg
 
 ## SGE - BUT ##
 #fea_parallel_opts="-q $queues -l scratch1=0.3"
@@ -49,7 +50,8 @@ fea_parallel_opts="-q $queues -l arch=*64"
 ############################################################################
 # Model settings.                                                          #
 ############################################################################
-concentration=1
+#concentration=1
+concentration=10
 truncation=200
 eta=3
 nstates=3
@@ -127,5 +129,5 @@ label_parallel_opts="-q $queues -l arch=*64"
 # Scoring settings.                                                        #
 ############################################################################
 #score_keys=$root/data/test.keys
-score_keys=$root/data/train.keys
-score_ref=$root/data/score.ref
+#score_keys=$root/data/train.keys
+#score_ref=$root/data/score.ref

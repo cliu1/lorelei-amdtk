@@ -15,7 +15,6 @@ setup=$1
 source $setup || exit 1
 
 ##
-export PATH="/home/cliu1/.local/bin:$PATH"
 . path.sh || exit 1;
 ##
 
@@ -31,12 +30,9 @@ fi
 n=0 
 
 echo "($((++n))) Data preparation..."
-#local/prepare_data.sh $setup || exit 1
-local/prepare_data_clsp.sh $setup || exit 1 # Use this on clsp grid
 echo done
 
 echo "($((++n))) Features extraction..."
-#utils/extract_features_db.sh $setup || exit 1
 echo done
 
 echo "($((++n))) Creating the model..."
@@ -53,31 +49,9 @@ utils/phone_loop_label.sh $setup  $root/$model_type/unigram \
     $root/$model_type/unigram_labels || exit 1
 echo done
 
-echo "($((++n))) Scoring the unigram model..."
-utils/score_labels.sh $setup $root/$model_type/unigram_labels \
-    $root/$model_type/score_unigram || exit 1
-echo done
 
 
 echo `date` && exit 0;
 
 
-
-:<<'END'
-echo "($((++n))) Retraining the phone loop with a bigram LM..."
-echo "path: $root/$model_type/bigram"
-utils/phone_loop_retrain.sh $setup 5 5 $root/$model_type/unigram \
-    $root/$model_type/bigram || exit 1
-echo done
-
-echo "($((++n))) Labeling the bigram model..."
-utils/phone_loop_label.sh $setup  $root/$model_type/bigram \
-    $root/$model_type/bigram_labels || exit 1
-echo done
-
-echo "($((++n))) Scoring the bigram model..."
-utils/score_labels.sh $setup $root/$model_type/bigram_labels \
-    $root/$model_type/score_bigram || exit 1
-echo done
-END
 

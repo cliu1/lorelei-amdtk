@@ -7,8 +7,7 @@
 # We avoid symbolic links as it may confuses the installation process.
 amdtk_root=$(pwd -P)
 
-#anaconda_path="/home/jyang/anaconda3"
-anaconda_path="/home/cliu1/anaconda3"
+anaconda_path=
 env_name="py35_amdtk"
 
 while getopts ":e:hp:" opt; do
@@ -98,51 +97,8 @@ fi
 # Activate the new environment to install other dependencies.
 source activate $env_name
 
-# Install sph2pipe. This is needed for features extraction.
-if [ ! -e $amdtk_root/extras/sph2pipe_v2.5.tar.gz ]; then    
-    wget -P $amdtk_root/extras "https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/ctools/sph2pipe_v2.5.tar.gz" --no-check-certificate
-else
-    echo sph2pipe already downloaded.
-fi
-if [ ! -e $amdtk_root/extras/sph2pipe_v2.5 ]; then
-    tar xvf $amdtk_root/extras/sph2pipe_v2.5.tar.gz
-    mv $amdtk_root/sph2pipe_v2.5 $amdtk_root/extras
-    cd $amdtk_root/extras/sph2pipe_v2.5
-    gcc -o sph2pipe *.c -lm
-    cd ../../
-fi
-
 # set prefix for installations
 prefix="$anaconda_path"/envs/"$env_name"
-
-:<<'END'
-# Install OpenFst 3.5.3. We have shipped OpenFst into AMDTK as we have 
-# changed OpenFst's configuration script to be compatible with python 3.
-
-python -c "import pywrapfst"
-is_anaconda_installed=$?
-if [ $is_anaconda_installed -ne 0 ]; then
-    rm -fr $amdtk_root/openfst-1.5.3
-    tar xvf $amdtk_root/openfst-1.5.3.tar.gz
-    cd $amdtk_root/openfst-1.5.3 
-    ./configure --enable-python --enable-far --prefix=$prefix
-    make 
-    make install
-    cd ../
-else
-    echo OpenFst already installed.
-fi
-END
-
-# Compile and install fstphicompose
-#install_prefix="$amdtk_root"/extras/bin
-#if [[ ! -f "$install_prefix"/fstphicompose ]]; then
-#    mkdir -p "$install_prefix"
-#    cd "$amdtk_root"/tools/fstphicompose
-#    make PREFIX="$prefix"
-#    make install INSTALL_PREFIX="$install_prefix"
-#    cd ../../
-#fi
 
 # Create the path.sh file to use the newly created environment.
 cp $amdtk_root/path_template.sh $amdtk_root/extras/path.sh
@@ -167,14 +123,13 @@ echo "export LD_LIBRARY_PATH=$prefix/lib:\$LD_LIBRARY_PATH" >> $amdtk_root/extra
 echo -n "Copying 'path.sh' file into recipes' directory... "
 # timit recipe
 cp $amdtk_root/extras/path.sh $amdtk_root/recipes/timit
-# wsj recipe
-#cp $amdtk_root/extras/path.sh $amdtk_root/recipes/wsj
-#ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/wsj/utils
-# babel turkish recipe
-#cp $amdtk_root/extras/path.sh $amdtk_root/recipes/babel_turkish_clsp
-#ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/babel_turkish_clsp/utils
-# WSJ no punctuation recipe
-#cp $amdtk_root/extras/path.sh $amdtk_root/recipes/wsj_no_punc
-#ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/wsj_no_punc/utils
+# Uyghur IL3_DEV_20160831 recipe
+mkdir -p $amdtk_root/recipes/IL3_DEV_20160831
+cp $amdtk_root/extras/path.sh $amdtk_root/recipes/IL3_DEV_20160831
+ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/IL3_DEV_20160831/utils
+# Mandarin LDC2016E108 recipe
+mkdir -p $amdtk_root/recipes/CHN_DEV_20160831
+cp $amdtk_root/extras/path.sh $amdtk_root/recipes/CHN_DEV_20160831
+ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/CHN_DEV_20160831/utils
 echo done
 
