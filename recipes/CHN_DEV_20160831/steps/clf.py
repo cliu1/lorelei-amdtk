@@ -5,6 +5,7 @@
 
 import sys, os, pprint
 import random, copy
+import pickle
 from datetime import datetime
 
 import numpy as np
@@ -44,6 +45,7 @@ def main():
   f_utt2label = sys.argv[1] 
   f_pkl = sys.argv[2]
   f_feats = sys.argv[3]
+  wdir = sys.argv[4]
 
   ##
   file_utt2label_train = open(f_utt2label, "r")
@@ -154,6 +156,8 @@ def main():
   X_train = transformer.transform(X_train)
   X_test = transformer.transform(X_test)
 
+  with open(wdir + "/tfidfTransformer.pkl", 'wb') as wf:
+    pickle.dump(transformer, wf)
   # --------------------------------------------------------
   #clf = SGDClassifier(loss='hinge', alpha=.001, n_iter=30, penalty='l2')
   clf = SGDClassifier(loss='hinge', alpha=.0001, n_iter=30, penalty='l2'); #print clf.get_params()
@@ -163,6 +167,8 @@ def main():
   y_score = classif.fit(X_train, Y_train).decision_function(X_test)
   n_classes = Y_train.shape[1]
 
+  with open(wdir + "/clf.pkl", 'wb') as wf:
+    pickle.dump(classif, wf)
   # --------------------------------------------------------
   # Probability calibration
   #if True:

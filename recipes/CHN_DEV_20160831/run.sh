@@ -67,12 +67,10 @@ if [ ! -f $root/data/train.tra ]; then
     $root/data/train.feats || exit 1;
 fi
 
-if [ ! -f $root/data/clf_model ]; then
+if [ ! -f $root/data/clf.pkl ]; then
   steps/clf.py $root/data/utt2label_shuf $root/data/ngram2dim.pkl \
-    $root/data/train.feats || exit 1;
+    $root/data/train.feats $root/data || exit 1;
 fi
-
-
 
 echo "Finished on" `date` && exit 0;
 
