@@ -77,8 +77,10 @@ def main():
   #pprint.pprint(utt2label); sys.exit(0); 
   # --------------------------------------------------------
   # --------------------------------------------------------
-  ngram_map = pickle.load(f_pkl)
-  DIM = len(ngram_map)
+  with open(f_pkl, 'rb') as f:
+    ngram_map = pickle.load(f)
+    DIM = len(ngram_map)
+    print "DIM:", DIM
 
   file_feats = open(f_feats, "r"); #DIM = 271141
 
