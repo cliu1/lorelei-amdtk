@@ -46,7 +46,7 @@ done
 # Directory where we will install the external tools and python (miniconda)
 mkdir -p $amdtk_root/extras
 
-if [ ! -d $anaconda_path ]; then
+if [ ! -z $anaconda_path ]; then
     echo "Installing Miniconda 3"
 
     # Check the architecture of the machine.
@@ -82,6 +82,8 @@ if [ ! -d $anaconda_path ]; then
     else
         echo Miniconda is already installed.
     fi
+
+    anaconda_path=$amdtk_root/extras/miniconda3
 fi
 
 # Set the path to the correct python distribution for the the rest of the 
