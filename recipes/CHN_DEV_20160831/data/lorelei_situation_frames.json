@@ -1,0 +1,817 @@
+[
+  {
+    "DocumentID": "CHN_DEV_033_020", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_020", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_020", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_008", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_008", 
+    "Type": "Civil Unrest or Widespread Crime", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_005_009", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_004", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_004", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_014", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_010_005", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_011_013", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_024_008", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_010_018", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_035_008", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_035_008", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_035_008", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_003", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_007", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_007", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_018", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_005", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_016", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_016", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_017", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_003", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_003", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_057_004", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_014_018", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_014_017", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_005", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_005", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_004", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_004", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_004", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_007", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_007", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_056_002", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_009", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_009", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_059_003", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_066_004", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_002", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_002", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_002", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_048_002", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_042_003", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_042_003", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_042_003", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_042_003", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_019", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_014", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_001", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_001", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_001", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_001", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_011", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_008", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_059_002", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_036_010", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_056_003", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_056_003", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_005_015", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_013", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_013", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_013", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_013", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_024_007", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_010", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_061_003", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_014_019", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_001", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_001", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_056_001", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_056_001", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_052_002", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_052_002", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_052_002", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_052_002", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_005", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_005", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_015", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_021_005", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_017", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_017", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_001", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_001", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_004", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_004", 
+    "Type": "Civil Unrest or Widespread Crime", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_004", 
+    "Type": "Elections and Politics", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_003", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_003", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_003", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_003", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_003", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_061_001", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_005", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_005_010", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_004", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_004", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_004", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_004", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_003", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_055_003", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_001", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_001", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }
+  {
+    "DocumentID": "CHN_DEV_010_004", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_057_006", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_057_006", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_046_005", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_004_018", 
+    "Type": "Elections and Politics", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_024", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_024", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_029_003", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_017", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_022", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_021_013", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_010", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_010", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_008", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_018_008", 
+    "Type": "Utilities, Energy, or Sanitation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_030_009", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_012", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_012", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_012", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_005_013", 
+    "Type": "Water Supply", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_010", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_044_010", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_014_010", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_043_008", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_002", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_002", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_016", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_075_011", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_075_011", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_075_011", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_004_011", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_022_009", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_006", 
+    "Type": "Terrorism or other Extreme Violence", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_006", 
+    "Type": "Civil Unrest or Widespread Crime", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_006_006", 
+    "Type": "Medical Assistance", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_036_007", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_021_006", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_004_013", 
+    "Type": "Elections and Politics", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_007", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_032_007", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_039_001", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_039_001", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_039_001", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_007", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_064_007", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_041_003", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_071_003", 
+    "Type": "Shelter", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_021_012", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_035_007", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_027_004", 
+    "Type": "Civil Unrest or Widespread Crime", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_031_010", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_027_001", 
+    "Type": "Civil Unrest or Widespread Crime", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_081_009", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_004_009", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_010_007", 
+    "Type": "NONE OF THE ABOVE", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_006", 
+    "Type": "Infrastructure", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_006", 
+    "Type": "Urgent Rescue", 
+    "TypeConfidence": 1.0
+  }, 
+  {
+    "DocumentID": "CHN_DEV_033_006", 
+    "Type": "Evacuation", 
+    "TypeConfidence": 1.0
+  }
+]
