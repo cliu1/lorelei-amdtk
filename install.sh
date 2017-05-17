@@ -46,7 +46,7 @@ done
 # Directory where we will install the external tools and python (miniconda)
 mkdir -p $amdtk_root/extras
 
-if [ ! -d $anaconda_path ]; then
+if [ -z $anaconda_path ]; then
     echo "Installing Miniconda 3"
 
     # Check the architecture of the machine.
@@ -82,6 +82,8 @@ if [ ! -d $anaconda_path ]; then
     else
         echo Miniconda is already installed.
     fi
+
+    anaconda_path=$amdtk_root/extras/miniconda3
 fi
 
 # Set the path to the correct python distribution for the the rest of the 
@@ -121,12 +123,15 @@ echo "export LD_LIBRARY_PATH=$prefix/lib:\$LD_LIBRARY_PATH" >> $amdtk_root/extra
 
 # Install the recipes.
 echo -n "Copying 'path.sh' file into recipes' directory... "
-# Mandarin LDC2016E108 recipe
-mkdir -p $amdtk_root/recipes/CHN_DEV_20160831
-cp $amdtk_root/extras/path.sh $amdtk_root/recipes/CHN_DEV_20160831
-
+# timit recipe
+cp $amdtk_root/extras/path.sh $amdtk_root/recipes/timit
 # Uyghur IL3_DEV_20160831 recipe
 mkdir -p $amdtk_root/recipes/IL3_DEV_20160831
 cp $amdtk_root/extras/path.sh $amdtk_root/recipes/IL3_DEV_20160831
+ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/IL3_DEV_20160831/utils
+# Mandarin LDC2016E108 recipe
+mkdir -p $amdtk_root/recipes/CHN_DEV_20160831
+cp $amdtk_root/extras/path.sh $amdtk_root/recipes/CHN_DEV_20160831
+ln -s $amdtk_root/recipes/timit/utils $amdtk_root/recipes/CHN_DEV_20160831/utils
 echo done
 
