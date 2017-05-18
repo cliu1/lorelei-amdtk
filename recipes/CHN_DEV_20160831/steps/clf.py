@@ -120,7 +120,7 @@ def main():
 
     # Compute metrics after training
     average_precision = dict()
-    for i in range(n_classes):
+    for i in range(len(int2label)):
       average_precision[i] = average_precision_score(Y[:, i], y_score[:, i])
 
     average_precision["micro"] = average_precision_score(Y, y_score, average="micro")
