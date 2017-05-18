@@ -35,9 +35,8 @@ def write2feats(file_feat, line, ngram_map, label):
 
     #if ngram_map.has_key(z) == False or ngram_map.has_key(yz) == False or \
     if ngram_map.has_key(xyz) == False:
-      print "KeyError"
-      print line
-      sys.exit(1)
+      #print "KeyError during training"; print line; sys.exit(1)
+      continue
 
     #feat[ngram_map[z]] = feat.get(ngram_map[z], 0) + 1
     #feat[ngram_map[yz]] = feat.get(ngram_map[yz], 0) + 1
