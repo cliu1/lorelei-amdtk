@@ -93,7 +93,8 @@ def main():
     #pprint.pprint(utt2label); sys.exit(0);
     # --------------------------------------------------------
     # --------------------------------------------------------
-    utt2label_lst = random.shuffle(utt2label.keys())
+    utt2label_lst = utt2label.keys()
+    random.shuffle(utt2label_lst)
 
     Y = []
     X = []
