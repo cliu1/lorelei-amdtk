@@ -14,7 +14,7 @@ echo ---------------------------------------------------------------------
 
 . `pwd -P`/path.sh || exit 1;
 
-setup="`pwd -P`/setup.sh"
+setup="`pwd -P`/setup_train.sh"
 if [ ! -f $setup ]; then
   echo "expect" $setup && exit 1;
 else
