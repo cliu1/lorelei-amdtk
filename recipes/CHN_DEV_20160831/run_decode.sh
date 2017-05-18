@@ -43,7 +43,7 @@ echo ---------------------------------------------------------------------
 
 if [ ! -f $root/data/decode.tra ]; then
   steps/label2tra.py $root/data/${decode}.keys \
-    $root/$model_type/unigram_labels_$decode/ \
+    $root/$model_type/unigram_labels_$decode \
     $root/data/decode.tra || exit 1;
 
   steps/trigram.py $root/data/decode.tra $root/data/ngram2dim.pkl \

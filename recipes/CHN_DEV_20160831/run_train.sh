@@ -61,7 +61,7 @@ fi
 
 if [ ! -f $root/data/train.tra ]; then
   steps/label2tra.py $root/data/train.keys \
-    $root/$model_type/unigram_labels/ \
+    $root/$model_type/unigram_labels \
     $root/data/train.tra || exit 1;
 
   steps/trigram.py $root/data/train.tra $root/data/ngram2dim.pkl \
