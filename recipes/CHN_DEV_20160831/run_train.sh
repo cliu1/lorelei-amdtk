@@ -5,6 +5,7 @@
 set -e
 set -o pipefail
 
+. ./lang.conf || exit 1;
 
 #####################################################################
 echo ---------------------------------------------------------------------
@@ -60,7 +61,7 @@ fi
 
 if [ ! -f $root/data/train.tra ]; then
   steps/label2tra.py $root/data/train.keys \
-    "/export/b04/cliu1/AMDTK-0/recipes/CHN_DEV_20160831/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram_labels/" \
+    $root/$model_type/unigram_labels/ \
     $root/data/train.tra || exit 1;
 
   steps/trigram.py $root/data/train.tra $root/data/ngram2dim.pkl \
@@ -68,8 +69,8 @@ if [ ! -f $root/data/train.tra ]; then
 fi
 
 if [ ! -f $root/data/clf.pkl ]; then
-  steps/clf.py $root/data/utt2label_shuf $root/data/ngram2dim.pkl \
-    $root/data/train.feats $root/data || exit 1;
+  # expect $root/data/utt2label_shuf $root/data/ngram2dim.pkl
+  steps/clf.py $root/data/train.feats || exit 1;
 fi
 
 echo "Finished on" `date` && exit 0;
