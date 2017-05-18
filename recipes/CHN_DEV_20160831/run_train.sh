@@ -52,11 +52,9 @@ echo ---------------------------------------------------------------------
 echo "Start situation frame type classifier training on" `date`
 echo ---------------------------------------------------------------------
 
-if [ ! -f $root/data/utt2label_shuf ]; then
+if [ ! -f $root/data/utt2label ]; then
   steps/annotation.py $root/data/lorelei_situation_frames.json \
     $root/data/utt2label || exit 1;
-
-  shuf $root/data/utt2label > $root/data/utt2label_shuf || exit 1;
 fi
 
 if [ ! -f $root/data/train.tra ]; then
@@ -68,10 +66,12 @@ if [ ! -f $root/data/train.tra ]; then
     $root/data/train.feats || exit 1;
 fi
 
-if [ ! -f $root/data/clf.pkl ]; then
-  # expect $root/data/utt2label_shuf $root/data/ngram2dim.pkl
-  steps/clf.py $root/data/train.feats || exit 1;
+if [ -f $root/data/clf.pkl ]; then
+  rm $root/data/clf.pkl || exit 1;
 fi
+
+# expect $root/data/utt2label $root/data/ngram2dim.pkl
+steps/clf.py $root/data $root/data/train.feats || exit 1;
 
 echo "Finished on" `date` && exit 0;
 
