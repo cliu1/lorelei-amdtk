@@ -76,15 +76,16 @@ file_tra.close()
 #pprint.pprint(conv_lst); print conv2line; #sys.exit(0)
 # ---------------------------------------------------------
 # ---------------------------------------------------------
-
 ngram_map = {} # ngram : idx (from 1)
+
+for conv in conv_lst:
+  conv2line[conv].append(EOC)
 
 if os.path.isfile(f_pickle):
   with open(f_pickle, "rb") as f:
     ngram_map = pickle.load(f)
 else:
   for conv in conv_lst:
-    conv2line[conv].append(EOC)
     line = conv2line[conv]
   
     x = BOC; y = BOC
