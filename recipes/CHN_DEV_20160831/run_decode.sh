@@ -55,7 +55,7 @@ if [ ! -f $root/data/decode.json ]; then
     echo "expect" $root/data/clf.pkl && exit 1;
   fi
 
-  steps/clf.py $root/data/decode.feats || exit 1;
+  steps/clf.py $root/data $root/data/decode.feats || exit 1;
 fi
 
 echo "Finished on" `date` && exit 0;
