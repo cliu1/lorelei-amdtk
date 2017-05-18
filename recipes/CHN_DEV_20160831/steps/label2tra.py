@@ -25,7 +25,7 @@ wfile = file(wf_tra, 'w')
 for conv in conv_lst:
   print >> wfile, conv,
 
-  with open(labeldir + conv + ".lab", 'r') as infile:
+  with open(labeldir + "/" + conv + ".lab", 'r') as infile:
     for line in infile:
       t1, t2, aud = line.split()
       print >> wfile, aud,

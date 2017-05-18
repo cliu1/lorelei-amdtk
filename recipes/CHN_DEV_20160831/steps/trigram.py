@@ -4,6 +4,7 @@
 #
 
 import sys, pprint
+import os.path
 import pickle
 from datetime import datetime
 
@@ -46,11 +47,13 @@ def write2feats(file_feat, line, ngram_map, label):
 
 
   print >> file_feat, make_feat(feat, ndim, label)
-# ---------------------------------------------------------
-# main
-# ---------------------------------------------------------
+## ---------------------------------------------------------
+## ---------------------------------------------------------
+## main
+## ---------------------------------------------------------
+## ---------------------------------------------------------
 f_tra = sys.argv[1] #f_tra = "decode.tra"
-wf_pickle = sys.argv[2]
+f_pickle = sys.argv[2]
 wf_feats = sys.argv[3]
 
 file_tra = file(f_tra)
@@ -72,38 +75,42 @@ file_tra.close()
 
 #pprint.pprint(conv_lst); print conv2line; #sys.exit(0)
 # ---------------------------------------------------------
+# ---------------------------------------------------------
 
 ngram_map = {} # ngram : idx (from 1)
 
-for conv in conv_lst:
-  conv2line[conv].append(EOC)
-  line = conv2line[conv]
-
-  x = BOC; y = BOC
-  for z in line:
-    #if ngram_map.has_key(z) == False:
-    #  ngram_map[z] = len(ngram_map) + 1 # index from 1
-
-    #yz = y + FS + z
-    #if ngram_map.has_key(yz) == False:
-    #  ngram_map[yz] = len(ngram_map) + 1
-
-    xyz = x + FS + y + FS + z
-    if ngram_map.has_key(xyz) == False:
-      ngram_map[xyz] = len(ngram_map) + 1
-
-    x = y; y = z
-
-# write a dictionary file
-wfile_pickle = open(wf_pickle, 'wb')
-pickle.dump(ngram_map, wfile_pickle)
-wfile_pickle.close()
-
+if os.path.isfile(f_pickle):
+  with open(f_pickle, "rb") as f:
+    ngram_map = pickle.load(f)
+else:
+  for conv in conv_lst:
+    conv2line[conv].append(EOC)
+    line = conv2line[conv]
+  
+    x = BOC; y = BOC
+    for z in line:
+      #if ngram_map.has_key(z) == False:
+      #  ngram_map[z] = len(ngram_map) + 1 # index from 1
+  
+      #yz = y + FS + z
+      #if ngram_map.has_key(yz) == False:
+      #  ngram_map[yz] = len(ngram_map) + 1
+  
+      xyz = x + FS + y + FS + z
+      if ngram_map.has_key(xyz) == False:
+        ngram_map[xyz] = len(ngram_map) + 1
+  
+      x = y; y = z
+  
+  # write a dictionary file
+  with open(f_pickle, 'wb') as wf:
+    pickle.dump(ngram_map, wf)
+  
 print "ngram DIM:", len(ngram_map)
 #pprint.pprint(ngram_map); #sys.exit(0)
 # ---------------------------------------------------------
 # ---------------------------------------------------------
-wfile_feats = file(wf_feats, 'w') #wfile_feats = file("svm.feats", 'w')
+wfile_feats = file(wf_feats, 'w')
 
 for conv in conv_lst:
   line = conv2line[conv]
