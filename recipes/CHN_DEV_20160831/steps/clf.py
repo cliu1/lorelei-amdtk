@@ -54,6 +54,7 @@ def main():
 
   utt_lst = []
   utt2feats = {}
+  X = []
   print "read", f_feats
   with open(f_feats, "r") as f:
     for line in f:
@@ -72,6 +73,7 @@ def main():
         x.append(dic.get(t, 0))
 
       utt2feats[utt] = x
+      X.append(x)
 
   #np.set_printoptions(threshold=np.nan, suppress=True); pprint.pprint(len(utt2feats)); sys.exit(0)
   # --------------------------------------------------------
@@ -97,26 +99,27 @@ def main():
     random.shuffle(utt2label_lst)
 
     Y = []
-    X = []
+    X_train = []
     for utt in utt2label_lst:
       Y.append(utt2label[utt])
-      X.append(utt2feats[utt])
+      X_train.append(utt2feats[utt])
 
     Y = np.asarray(Y)
     X = np.asarray(X)
+    X_train = np.asarray(X_train)
 
-    print "Training: Y.shape", Y.shape, "; X.shape", X.shape
+    print "Training: Y.shape", Y.shape, "; X.shape", X.shape, "; X_train.shape", X_train.shape
 
     transformer = TfidfTransformer(norm='l2', use_idf=True, smooth_idf=True)
     transformer.fit(X) #transformer.fit(X_train + X_test)
-    X = transformer.transform(X)
+    X_train = transformer.transform(X_train)
 
     #clf = SGDClassifier(loss='hinge', alpha=.001, n_iter=30, penalty='l2')
     clf = SGDClassifier(loss='hinge', alpha=.0001, n_iter=30, penalty='l2')
     print clf.get_params()
 
     classif = OneVsRestClassifier(clf)
-    y_score = classif.fit(X, Y).decision_function(X)
+    y_score = classif.fit(X_train, Y).decision_function(X_train)
 
     # Compute metrics after training
     average_precision = dict()
@@ -142,9 +145,6 @@ def main():
     with open(srcdir + "/clf.pkl", 'rb') as f:
       classif = pickle.load(f)
 
-    X = []
-    for utt in utt_lst:
-      X.append(utt2feats[utt])
 
     X = transformer.transform(X)
 
