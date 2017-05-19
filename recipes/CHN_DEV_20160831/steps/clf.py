@@ -114,8 +114,8 @@ def main():
     transformer.fit(X) #transformer.fit(X_train + X_test)
     X_train = transformer.transform(X_train)
 
-    #clf = SGDClassifier(loss='hinge', alpha=.001, n_iter=30, penalty='l2')
-    clf = SGDClassifier(loss='hinge', alpha=.0001, n_iter=30, penalty='l2')
+    #clf = SGDClassifier(loss='hinge', alpha=.0001, n_iter=30, penalty='l2')
+    clf = SGDClassifier(loss='hinge', alpha=.001, n_iter=30, penalty='l2')
     print clf.get_params()
 
     classif = OneVsRestClassifier(clf)
