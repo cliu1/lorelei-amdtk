@@ -7,6 +7,34 @@ set -o pipefail
 
 #####################################################################
 echo ---------------------------------------------------------------------
+echo "Start bottleneck feature extraction on" `date`
+echo ---------------------------------------------------------------------
+
+if [ ! -f $fea_dir/.done ]; then
+  pushd $kaldi_dir || exit 1;
+
+
+
+  set -o nounset
+  
+  . ./path.sh
+  . ./cmd.sh
+  
+  #input_data=/export/b04/cliu1/kaldi-multilingual-pegahgh/egs/multi_en/multi-g-ivec-2/data/CHN_DEV_20160831/test_conv_hires_mfcc_pitch
+  output_data=./test_conv_bnf
+  train_nj=32
+  bnf_layer=5
+  
+  utils/copy_data_dir.sh $input_data $output_data
+  steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $train_nj --cmd "$train_cmd" \
+    renorm${bnf_layer} $input_data $output_data $extractor || exit 1;  
+
+  popd
+fi
+
+
+#####################################################################
+echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
 
@@ -51,8 +79,8 @@ if [ ! -f $root/data/decode.tra ]; then
 fi
 
 if [ ! -f $root/data/decode.json ]; then
-  if [ ! -f $root/data/clf.pkl ]; then
-    echo "expect" $root/data/clf.pkl && exit 1;
+  if [ ! -f $root/data/clf.pkl ] || [ ! -f $root/data/tfidfTransformer.pkl ]; then
+    echo "expect $root/data/clf.pkl and $root/data/tfidfTransformer.pkl" && exit 1;
   fi
 
   steps/clf.py $root/data $root/data/decode.feats || exit 1;

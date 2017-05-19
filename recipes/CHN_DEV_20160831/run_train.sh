@@ -12,17 +12,17 @@ echo ---------------------------------------------------------------------
 echo "Start Acoustic Unit Discovery (AUD) training on" `date`
 echo ---------------------------------------------------------------------
 
-. `pwd -P`/path.sh || exit 1;
-
-setup="`pwd -P`/setup_train.sh"
-if [ ! -f $setup ]; then
-  echo "expect" $setup && exit 1;
-else
-  source $setup || exit 1;
-fi
-
 mkdir -p $root/$model_type || exit 1;
 if [ ! -f $root/$model_type/unigram/.done ]; then
+  . `pwd -P`/path.sh || exit 1;
+  
+  setup="`pwd -P`/setup_train.sh"
+  if [ ! -f $setup ]; then
+    echo "expect" $setup && exit 1;
+  else
+    source $setup || exit 1;
+  fi
+  
   #echo "Data preparation..."
   #echo "Features extraction..."
 
@@ -34,17 +34,17 @@ if [ ! -f $root/$model_type/unigram/.done ]; then
   utils/phone_loop_train.sh $setup 10 $root/$model_type/initial_model \
     $root/$model_type/unigram || exit 1
   echo "AUD training done on" `date`
-fi
 
-if [ ! -f $root/$model_type/unigram_labels/.done ]; then
-  echo "Labeling the unigram model..."
-  utils/phone_loop_label.sh $setup $root/$model_type/unigram \
-      $root/$model_type/unigram_labels || exit 1
-  echo "Labeling the training corpus done on" `date`
-fi
+  if [ ! -f $root/$model_type/unigram_labels/.done ]; then
+    echo "Labeling the unigram model..."
+    utils/phone_loop_label.sh $setup $root/$model_type/unigram \
+        $root/$model_type/unigram_labels || exit 1
+    echo "Labeling the training corpus done on" `date`
+  fi
 
-# removes the 'bin' directory of the environment activated with 'source activate' from PATH.
-source deactivate || exit 0;
+  # removes the 'bin' directory of the environment activated with 'source activate' from PATH.
+  source deactivate || exit 0;
+fi
 
 
 #####################################################################
