@@ -1,0 +1,1 @@
+../CHN_DEV_20160831/setup_train.sh

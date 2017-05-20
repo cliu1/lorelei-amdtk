@@ -19,7 +19,6 @@ root=$(pwd -P)
 #   * local
 #   * sge
 #   * openccs.
-#export AMDTK_PARALLEL_ENV="local"
 export AMDTK_PARALLEL_ENV="sge"
 
 parallel_n_core=100
@@ -35,7 +34,7 @@ queues="all.q"
 
 fea_ext='fea'
 #fea_type=mfcc
-fea_type=bn
+#fea_type=bn
 fea_dir=$fea_dir_train
 
 ############################################################################
