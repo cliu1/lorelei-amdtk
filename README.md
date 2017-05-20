@@ -15,3 +15,6 @@ data/ngram2dim.pkl
 data/tfidfTransformer.pkl 
 data/clf.pkl
 
+
+/export/b04/cliu1/AMDTK-0/recipes/CHN_DEV_20160831/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin
+/export/b04/cliu1/AMDTK-0/recipes/IL3_DEV_20160831/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin

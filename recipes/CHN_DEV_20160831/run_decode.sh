@@ -45,7 +45,6 @@ echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
 
-. $root/path.sh
 
 setup=$root/setup_decode.sh
 if [ ! -f $setup ]; then
@@ -60,18 +59,20 @@ fi
 if [ ! -f $root/$model_type/unigram_labels_$decode/.done ]; then
   echo "Labeling" $decode
 
+  . $root/path.sh
+
   if [ ! -f $fea_dir/.done ]; then
     echo "expect $fea_dir/*.fea" && exit 1;
   else
-    echo "using fea_dir $fea_dir"
+    echo "using fea_dir: ./$fea_dir"
   fi
 
   utils/phone_loop_label.sh $setup $root/$model_type/unigram \
       $root/$model_type/unigram_labels_$decode || exit 1;
-fi
 
-# removes the 'bin' directory of the environment activated with 'source activate' from PATH.
-source deactivate || exit 1;
+  # removes the 'bin' directory of the environment activated with 'source activate' from PATH.
+  source deactivate || exit 1;
+fi
 
 #####################################################################
 echo ---------------------------------------------------------------------
