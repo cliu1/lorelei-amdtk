@@ -15,10 +15,12 @@ use_bnf=true
 pitch_conf=conf/pitch.conf
 aux_suffix=
 
+corpus=
+
 train_nj=32
 
-set -o errtrace
 trap "echo Exited!; exit;" SIGINT SIGTERM
+set -o errtrace
 set -u
 
 [ ! -f steps/make_pitch.sh ] && echo "No steps/make_pitch.sh" && exit 1;
@@ -29,15 +31,11 @@ multidir=$1
 bnf_layer=$2
 L=$3
 
+if [ $# -gt 3 ]; then
+  corpus=$4
+fi
+
 dir=data_conv
-
-#dir=eval_conv
-#L=CHN_DEV_20160831
-#L=LDC2016E115_Mandarin
-#L=IL3_DEV_20160831
-#L=IL3_EVAL_AUDIO_20160831
-
-#corpus=/export/corpora5/LORELEI/speech/LDC2016E115_LORELEI_Mandarin_Evaluation_Speech_Database
 #####################################################################
 #
 # Audio data directory preparation
@@ -49,27 +47,31 @@ if [ ! -f  $dataset_dir/.done ] ; then
   echo ---------------------------------------------------------------------
   echo "Preparing data files in ${dataset_dir} on" `date`
   echo ---------------------------------------------------------------------
-  
-  find -L $corpus  -name "*flac" > $dataset_dir/filelist.list || exit 1;
-  
-  for flac in `cat $dataset_dir/filelist.list `; do
-    fx=`basename $flac`;
-    fx=${fx%%.flac};
-    echo "$fx sox $flac -t wav -r 8000 -c 1 -  sinc 60-3300 -t 30|"
-    #echo "$fx sox $flac -t wav -r 8000 -  sinc 300-3300 -t 100|"
-    #echo "$fx sox $flac -t wav -r 8000 -|"
-  done > $dataset_dir/wav.scp
-  
-  wav-to-duration scp:$dataset_dir/wav.scp  ark,t:- 2>$dataset_dir/wav-to-duration.log| \
-    awk '{print $1, $1, 0.0, $2}' > $dataset_dir/segments || exit 1;
-  
-  for segment in `cat $dataset_dir/wav.scp | cut -f 1 -d ' ' `; do
-    echo $segment $segment
-  done > $dataset_dir/utt2spk
-  
-  utils/fix_data_dir.sh $dataset_dir || exit 1;
 
-  touch $dataset_dir/.done
+  if [ -z $corpus ]; then
+    echo "No corpus" && exit 1;
+  else
+    find -L $corpus  -name "*flac" > $dataset_dir/filelist.list || exit 1;
+    
+    for flac in `cat $dataset_dir/filelist.list `; do
+      fx=`basename $flac`;
+      fx=${fx%%.flac};
+      echo "$fx sox $flac -t wav -r 8000 -c 1 -  sinc 60-3300 -t 30|"
+      #echo "$fx sox $flac -t wav -r 8000 -  sinc 300-3300 -t 100|"
+      #echo "$fx sox $flac -t wav -r 8000 -|"
+    done > $dataset_dir/wav.scp
+    
+    wav-to-duration scp:$dataset_dir/wav.scp  ark,t:- 2>$dataset_dir/wav-to-duration.log| \
+      awk '{print $1, $1, 0.0, $2}' > $dataset_dir/segments || exit 1;
+    
+    for segment in `cat $dataset_dir/wav.scp | cut -f 1 -d ' ' `; do
+      echo $segment $segment
+    done > $dataset_dir/utt2spk
+    
+    utils/fix_data_dir.sh $dataset_dir || exit 1;
+
+    touch $dataset_dir/.done
+  fi
 fi
 
 if [ ! -f ${dataset_dir}_hires/.mfcc.done ]; then

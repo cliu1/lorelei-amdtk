@@ -4,7 +4,6 @@
 
 set -e -o pipefail
 set -u
-set -o nounset
 
 
 . ./lang.conf || exit 1;
@@ -14,26 +13,27 @@ echo ---------------------------------------------------------------------
 echo "Start bottleneck feature extraction on" `date`
 echo ---------------------------------------------------------------------
 
-if [ ! -f $fea_dir/.done ]; then
-  root=$(pwd -P)
+root=$(pwd -P)
+mkdir -p $fea_dir_decode
+if [ ! -f $fea_dir_decode/.done ]; then
 
   pushd $kaldi_dir || exit 1;
 
-  [ ! -f steps/make_bn.sh ] && ln -s $root/steps/make_bn.sh . || exit 1;
-  [ ! -f steps/make_pitch.sh ] && ln -s $root/steps/make_pitch.sh steps/make_pitch.sh || exit 1;
+  ln -sf $root/steps/make_bn.sh .
+  ln -sf $root/steps/make_pitch.sh steps/make_pitch.sh
 
   . ./path.sh
   . ./cmd.sh
   
-  ./make_bn.sh $multidir $bnf_layer $decode || exit 1;
+  ./make_bn.sh $multidir $bnf_layer $decode $corpus
 
   bnf_data_dir=data/$decode/data_conv_bnf
-  mkdir -p $bnf_data_dir/feats4aud  || exit 1;
   
   while read -r line; do
     utt=`echo $line | awk '{print $1}'`
-    echo $line > $bnf_data_dir/feats4aud/${utt}".fea"
+    echo $line > $root/$fea_dir_decode/${utt}".fea"
   done < $bnf_data_dir/feats_cmvn.scp
+  touch $root/$fea_dir_decode/.done
 
   popd
 fi
@@ -44,28 +44,34 @@ echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
 
-. `pwd -P`/path.sh || exit 1;
+. $root/path.sh
 
-setup="`pwd -P`/setup_decode.sh"
+setup=$root/setup_decode.sh
 if [ ! -f $setup ]; then
   echo "expect" $setup && exit 1;
 else
-  source $setup || exit 1;
+  source $setup
 fi
 
-if [ ! -f $root/$model_type/unigram/.done ]; then
+[ ! -f $root/$model_type/unigram/.done ] && \
   echo "expect model in $root/$model_type/unigram/" && exit 1;
-fi
+
 
 if [ ! -f $root/$model_type/unigram_labels_$decode/.done ]; then
   echo "Labeling" $decode
 
+  if [ ! -f $fea_dir/.done ]; then
+    echo "expect $fea_dir/*.fea" && exit 1;
+  else
+    echo "using fea_dir $fea_dir"
+  fi
+
   utils/phone_loop_label.sh $setup $root/$model_type/unigram \
-      $root/$model_type/unigram_labels_$decode || exit 1
+      $root/$model_type/unigram_labels_$decode || exit 1;
 fi
 
 # removes the 'bin' directory of the environment activated with 'source activate' from PATH.
-source deactivate || exit 0;
+source deactivate || exit 1;
 
 
 #####################################################################
