@@ -3,8 +3,6 @@
 #
 
 set -e -o pipefail
-set -u
-
 
 . ./lang.conf || exit 1;
 
@@ -38,13 +36,15 @@ if [ ! -f $fea_dir_decode/.done ]; then
   popd
 fi
 
-
+echo $PWD && exit 0;
 #####################################################################
 echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
 
 . $root/path.sh
+
+set -u
 
 setup=$root/setup_decode.sh
 if [ ! -f $setup ]; then
