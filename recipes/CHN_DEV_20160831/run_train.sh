@@ -12,6 +12,7 @@ echo ---------------------------------------------------------------------
 echo "Start Acoustic Unit Discovery (AUD) training on" `date`
 echo ---------------------------------------------------------------------
 
+root=$(pwd -P)
 mkdir -p $root/$model_type || exit 1;
 if [ ! -f $root/$model_type/unigram/.done ]; then
   . `pwd -P`/path.sh || exit 1;
