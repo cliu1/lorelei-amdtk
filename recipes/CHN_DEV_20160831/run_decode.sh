@@ -30,8 +30,10 @@ if [ ! -f $fea_dir_decode/.done ]; then
   
   while read -r line; do
     utt=`echo $line | awk '{print $1}'`
+    path=`echo $line | awk '{print $2}'`
+
     #echo $line > $root/$fea_dir_decode/${utt}".fea"
-    echo $kaldi_dir/$line > $root/$fea_dir_decode/${utt}".fea"
+    echo "$utt $kaldi_dir/$path" > $root/$fea_dir_decode/${utt}".fea"
   done < $bnf_data_dir/feats_cmvn.scp
   touch $root/$fea_dir_decode/.done
 
