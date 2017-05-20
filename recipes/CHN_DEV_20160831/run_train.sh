@@ -12,18 +12,17 @@ echo ---------------------------------------------------------------------
 echo "Start Acoustic Unit Discovery (AUD) training on" `date`
 echo ---------------------------------------------------------------------
 
-root=$(pwd -P)
+setup=`pwd -P`/setup_train.sh
+if [ ! -f $setup ]; then
+  echo "expect" $setup && exit 1;
+else
+  source $setup || exit 1;
+fi
+  
 mkdir -p $root/$model_type || exit 1;
 if [ ! -f $root/$model_type/unigram/.done ]; then
-  . `pwd -P`/path.sh || exit 1;
-  
-  setup="`pwd -P`/setup_train.sh"
-  if [ ! -f $setup ]; then
-    echo "expect" $setup && exit 1;
-  else
-    source $setup || exit 1;
-  fi
-  
+  . $root/path.sh || exit 1;
+
   #echo "Data preparation..."
   #echo "Features extraction..."
 
