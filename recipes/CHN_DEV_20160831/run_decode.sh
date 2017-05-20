@@ -2,8 +2,12 @@
 # 
 #
 
-set -e
-set -o pipefail
+set -e -o pipefail
+set -u
+set -o nounset
+
+
+. ./lang.conf || exit 1;
 
 #####################################################################
 echo ---------------------------------------------------------------------
@@ -11,23 +15,25 @@ echo "Start bottleneck feature extraction on" `date`
 echo ---------------------------------------------------------------------
 
 if [ ! -f $fea_dir/.done ]; then
+  root=$(pwd -P)
+
   pushd $kaldi_dir || exit 1;
 
+  [ ! -f steps/make_bn.sh ] && ln -s $root/steps/make_bn.sh . || exit 1;
+  [ ! -f steps/make_pitch.sh ] && ln -s $root/steps/make_pitch.sh steps/make_pitch.sh || exit 1;
 
-
-  set -o nounset
-  
   . ./path.sh
   . ./cmd.sh
   
-  #input_data=/export/b04/cliu1/kaldi-multilingual-pegahgh/egs/multi_en/multi-g-ivec-2/data/CHN_DEV_20160831/test_conv_hires_mfcc_pitch
-  output_data=./test_conv_bnf
-  train_nj=32
-  bnf_layer=5
+  ./make_bn.sh $multidir $bnf_layer $decode || exit 1;
+
+  bnf_data_dir=data/$decode/data_conv_bnf
+  mkdir -p $bnf_data_dir/feats4aud  || exit 1;
   
-  utils/copy_data_dir.sh $input_data $output_data
-  steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $train_nj --cmd "$train_cmd" \
-    renorm${bnf_layer} $input_data $output_data $extractor || exit 1;  
+  while read -r line; do
+    utt=`echo $line | awk '{print $1}'`
+    echo $line > $bnf_data_dir/feats4aud/${utt}".fea"
+  done < $bnf_data_dir/feats_cmvn.scp
 
   popd
 fi
@@ -37,8 +43,6 @@ fi
 echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
-
-. ./lang.conf || exit 1;
 
 . `pwd -P`/path.sh || exit 1;
 
