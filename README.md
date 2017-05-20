@@ -1,20 +1,17 @@
 # lorelei-amdtk
 
-1. The AMDTK (Acoustic Model Discovery ToolKit) is originally forked from https://github.com/iondel/amdtk, with changes for compatibility with kaldi, like reading kaldi features.
+The AMDTK (Acoustic Model Discovery ToolKit) is originally forked from https://github.com/iondel/amdtk, with changes for compatibility with kaldi, like reading kaldi features. Adapted from /export/b04/cliu1/AMDTK-0 on CLSP grid (e.g., ./install.sh -p /home/cliu1/anaconda3).
 
-Adapted from /export/b04/cliu1/AMDTK-0 on CLSP grid (e.g., ./install.sh -p /home/cliu1/anaconda3).
-
-2. Add scripts for lorelei situation frame type classification based on scikit-learn.
+Add scripts for lorelei situation frame type classification based on scikit-learn.
 
 
-Things need to be copied to do online decoding:
+# Things need to be copied for online decoding / Docker image:
 
-ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin 
+dir=/export/b04/cliu1/lorelei-amdtk/recipes
 
-data/ngram2dim.pkl
-data/tfidfTransformer.pkl 
-data/clf.pkl
+for recipe in CHN_DEV_20160831 IL3_DEV_20160831; do
+  cp $dir/$recipe/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin recipes/$recipe/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/
 
+  cp $dir/$recipe/data/{ngram2dim.pkl,tfidfTransformer.pkl,clf.pkl} recipes/$recipe/data/
+done
 
-/export/b04/cliu1/AMDTK-0/recipes/CHN_DEV_20160831/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin
-/export/b04/cliu1/AMDTK-0/recipes/IL3_DEV_20160831/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin
