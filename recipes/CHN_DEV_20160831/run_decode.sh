@@ -36,15 +36,12 @@ if [ ! -f $fea_dir_decode/.done ]; then
   popd
 fi
 
-echo $PWD && exit 0;
 #####################################################################
 echo ---------------------------------------------------------------------
 echo "Start AUD decoding on" `date`
 echo ---------------------------------------------------------------------
 
 . $root/path.sh
-
-set -u
 
 setup=$root/setup_decode.sh
 if [ ! -f $setup ]; then
@@ -55,7 +52,6 @@ fi
 
 [ ! -f $root/$model_type/unigram/.done ] && \
   echo "expect model in $root/$model_type/unigram/" && exit 1;
-
 
 if [ ! -f $root/$model_type/unigram_labels_$decode/.done ]; then
   echo "Labeling" $decode
@@ -72,7 +68,6 @@ fi
 
 # removes the 'bin' directory of the environment activated with 'source activate' from PATH.
 source deactivate || exit 1;
-
 
 #####################################################################
 echo ---------------------------------------------------------------------
