@@ -56,9 +56,8 @@ if [ ! -f  $dataset_dir/.done ] ; then
     for flac in `cat $dataset_dir/filelist.list `; do
       fx=`basename $flac`;
       fx=${fx%%.flac};
-      #echo "$fx sox $flac -t wav -r 8000 -|"
-      #echo "$fx sox $flac -t wav -r 8000 -c 1 -  sinc 60-3300 -t 30|"
-      echo "$fx sox $flac -t wav -r 8000 -  sinc 300-3300 -t 100|"
+      #echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 60-3300 -t 30|"
+      echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 300-3300 -t 100|"
     done > $dataset_dir/wav.scp
     
     wav-to-duration scp:$dataset_dir/wav.scp  ark,t:- 2>$dataset_dir/wav-to-duration.log| \
