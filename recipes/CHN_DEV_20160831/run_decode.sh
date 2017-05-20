@@ -17,19 +17,21 @@ if [ ! -f $fea_dir_decode/.done ]; then
 
   pushd $kaldi_dir || exit 1;
 
-  ln -sf $root/steps/make_bn.sh .
-  ln -sf $root/steps/make_pitch.sh steps/make_pitch.sh
-
-  . ./path.sh
-  . ./cmd.sh
-  
-  ./make_bn.sh $multidir $bnf_layer $decode $corpus
-
   bnf_data_dir=data/$decode/data_conv_bnf
+  if [ ! -f $bnf_data_dir/.done ]; then
+    ln -sf $root/steps/make_bn.sh .
+    ln -sf $root/steps/make_pitch.sh steps/make_pitch.sh
+    
+    . ./path.sh
+    . ./cmd.sh
+    
+    ./make_bn.sh $multidir $bnf_layer $decode $corpus
+  fi
   
   while read -r line; do
     utt=`echo $line | awk '{print $1}'`
-    echo $line > $root/$fea_dir_decode/${utt}".fea"
+    #echo $line > $root/$fea_dir_decode/${utt}".fea"
+    echo $kaldi_dir/$line > $root/$fea_dir_decode/${utt}".fea"
   done < $bnf_data_dir/feats_cmvn.scp
   touch $root/$fea_dir_decode/.done
 
