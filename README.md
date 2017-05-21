@@ -10,10 +10,7 @@ Add scripts for lorelei situation frame type classification based on scikit-lear
 dir=/export/b04/cliu1/lorelei-amdtk/recipes
 
 for recipe in CHN_DEV_20160831 IL3_DEV_20160831; do
-
     cp $dir/$recipe/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/model.bin recipes/$recipe/ploop_lbn_c10_T200_s3_g2_a3_b3/unigram/
-
     cp $dir/$recipe/data/{ngram2dim.pkl,tfidfTransformer.pkl,clf.pkl} recipes/$recipe/data/
-
 done
 
