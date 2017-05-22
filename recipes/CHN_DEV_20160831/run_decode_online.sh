@@ -4,8 +4,8 @@
 
 set -e -o pipefail
 
-DocID=CHN_EVAL_001_001
-audioFile=/export/corpora5/LORELEI/speech/LDC2016E115_LORELEI_Mandarin_Evaluation_Speech_Database/CHN_EVAL_20160831/CHN_EVAL_20160831/001/AUDIO/CHN_EVAL_001_001.flac
+DocID=$1
+audioFile=$2
 
 #
 . ./lang.conf || exit 1;
