@@ -110,6 +110,8 @@ if [ ! -f $outdir/${DocID}.json ]; then
   fi
 
   steps/clf.py $root/data $outdir/${DocID}.feats $outdir/${DocID}.json || exit 1;
+
+  echo "output" $outdir/${DocID}.json
 fi
 
 echo "Finished on" `date` && exit 0;
