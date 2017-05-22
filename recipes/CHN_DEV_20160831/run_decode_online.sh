@@ -20,10 +20,10 @@ fea_dir_decode=${fea_dir_decode}_online
 mkdir -p $fea_dir_decode
 if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
 
-  
-  [ ! -d $kaldi_dir ] && cp -r $kaldi_dir/../s5d $kaldi_dir
-  pushd $kaldi_dir
-  cp $root/steps/kaldi_path.sh $kaldi_dir/path.sh 
+  [ ! -d $kaldi_dir ] && echo "No $kaldi_dir" && exit 1;
+  cp -r $kaldi_dir/s5d $kaldi_dir/s5d_lorelei
+  pushd $kaldi_dir/s5d_lorelei
+  cp $root/steps/kaldi_path.sh $kaldi_dir/s5d_lorelei/path.sh 
 
   L=${decode}_online/$DocID
   data_dir=data/$L/data_conv && mkdir -p $data_dir || exit 1;
@@ -47,7 +47,7 @@ if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
     path=`echo $line | awk '{print $2}'`
 
     #echo $line > $root/$fea_dir_decode/${utt}".fea"
-    echo "$utt $kaldi_dir/$path" > $root/$fea_dir_decode/${utt}".fea"
+    echo "$utt $kaldi_dir/s5d_lorelei/$path" > $root/$fea_dir_decode/${utt}".fea"
   done < $data_dir_bnf/feats_cmvn.scp
 
   popd
