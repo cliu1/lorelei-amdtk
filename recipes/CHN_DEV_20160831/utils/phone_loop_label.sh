@@ -13,6 +13,10 @@ setup=$1
 model="$2/model.bin"
 label_dir="$3"
 
+if [ $# -gt 3 ]; then
+  label_keys=$4
+fi
+
 source "$setup" || exit 1
 
 if [ ! -e "$label_dir"/.done ]; then

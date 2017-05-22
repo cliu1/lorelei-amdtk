@@ -41,6 +41,12 @@ def main():
   srcdir = sys.argv[1]
   f_feats = sys.argv[2]
 
+  if len(sys.argv) < 4:
+    f_output = srcdir + "/decode.json"
+  else:
+    f_output = sys.argv[3]
+
+
   f_utt2label = srcdir + "/utt2label"
   f_dic = srcdir + "/ngram2dim.pkl"
   f_clf = srcdir + "/clf.pkl"
@@ -166,7 +172,7 @@ def main():
     print "y_score:", y_score.shape, y_score.min(), y_score.max()
 
     ## Write output
-    wfile = file(srcdir + "/decode.json", "w")
+    wfile = file(f_output, "w")
     wfile.write("[\n")
     for i in range(len(utt_lst)):
       utt = utt_lst[i]

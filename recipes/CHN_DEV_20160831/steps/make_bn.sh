@@ -27,50 +27,43 @@ set -u
 
 
 ####
+if [ $# -ne 4 ]; then
+    echo "Usage: $(basename $0) <multidir> <bnf_layer> <L> <dataset_dir>"
+    #echo " e.g.: $(basename $0)"
+    exit 1
+fi
+
 multidir=$1
 bnf_layer=$2
 L=$3
-
-if [ $# -gt 3 ]; then
-  corpus=$4
-fi
-
-dir=data_conv
+dataset_dir=$4  ## dataset_dir=data/$L/data_conv && mkdir -p $dataset_dir
 #####################################################################
 #
 # Audio data directory preparation
 #
 #####################################################################
-dataset_dir=data/$L/$dir && mkdir -p $dataset_dir || exit 1;
-
 if [ ! -f  $dataset_dir/.done ] ; then
   echo ---------------------------------------------------------------------
   echo "Preparing data files in ${dataset_dir} on" `date`
   echo ---------------------------------------------------------------------
 
-  if [ -z $corpus ]; then
-    echo "No corpus" && exit 1;
-  else
-    find -L $corpus  -name "*flac" > $dataset_dir/filelist.list || exit 1;
-    
-    for flac in `cat $dataset_dir/filelist.list `; do
-      fx=`basename $flac`;
-      fx=${fx%%.flac};
-      #echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 60-3300 -t 30|"
-      echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 300-3300 -t 100|"
-    done > $dataset_dir/wav.scp
-    
-    wav-to-duration scp:$dataset_dir/wav.scp  ark,t:- 2>$dataset_dir/wav-to-duration.log| \
-      awk '{print $1, $1, 0.0, $2}' > $dataset_dir/segments || exit 1;
-    
-    for segment in `cat $dataset_dir/wav.scp | cut -f 1 -d ' ' `; do
-      echo $segment $segment
-    done > $dataset_dir/utt2spk
-    
-    utils/fix_data_dir.sh $dataset_dir || exit 1;
+  for flac in `cat $dataset_dir/filelist.list `; do
+    fx=`basename $flac`;
+    fx=${fx%%.flac};
+    #echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 60-3300 -t 30|"
+    echo "$fx sox $flac -t wav -r 8000 -c 1 - sinc 300-3300 -t 100|"
+  done > $dataset_dir/wav.scp
+  
+  wav-to-duration scp:$dataset_dir/wav.scp  ark,t:- 2>$dataset_dir/wav-to-duration.log| \
+    awk '{print $1, $1, 0.0, $2}' > $dataset_dir/segments
+  
+  for segment in `cat $dataset_dir/wav.scp | cut -f 1 -d ' ' `; do
+    echo $segment $segment
+  done > $dataset_dir/utt2spk
+  
+  utils/fix_data_dir.sh $dataset_dir
 
-    touch $dataset_dir/.done
-  fi
+  touch $dataset_dir/.done
 fi
 
 if [ ! -f ${dataset_dir}_hires/.mfcc.done ]; then
