@@ -41,7 +41,7 @@ dataset_dir=$4  ## dataset_dir=data/$L/data_conv && mkdir -p $dataset_dir
 
 if [ $# -gt 4 ]; then
   my_nj=$5
-  #export train_cmd=run.pl
+  export train_cmd=run.pl
 fi
 #####################################################################
 #
@@ -143,7 +143,8 @@ if [[ $use_bnf && ! -f $bnf_data_dir/.done ]]; then
 
   echo "Preparing BN features in ${bnf_data_dir} on" `date`
 
-  steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $my_nj --cmd "$train_cmd" \
+  #steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $my_nj --cmd "$train_cmd" \
+  steps/nnet3/make_bottleneck_features.sh --use-gpu false --nj $my_nj --cmd "$train_cmd" \
     renorm${bnf_layer} \
     ${dataset_dir}_hires_mfcc${aux_suffix} $bnf_data_dir $multidir || exit 1; 
 
