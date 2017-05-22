@@ -84,38 +84,43 @@ def main():
   #np.set_printoptions(threshold=np.nan, suppress=True); pprint.pprint(len(utt2feats)); sys.exit(0)
   # --------------------------------------------------------
   # --------------------------------------------------------
+  mlb = MultiLabelBinarizer()
+  mlb.fit([[int(i) for i in range(0, len(int2label))]])
+
+  utt2label = {}
+  print "read", f_utt2label
+  with open(f_utt2label, "r") as f:
+    for line in f:  # e.g., TUR_001_004 1 9
+      inline = line.split()
+      utt = inline[0]
+      utt2label[utt] = mlb.transform([[int(i) for i in inline[1:]]]).flatten()
+
+  #pprint.pprint(utt2label); sys.exit(0);
+  # --------------------------------------------------------
+  utt2label_lst = utt2label.keys()
+  random.shuffle(utt2label_lst)
+
+  Y = []
+  for utt in utt2label_lst:
+    Y.append(utt2label[utt])
+
+  Y = np.asarray(Y)
+  print "Used for training: Y.shape", Y.shape
+  # --------------------------------------------------------
+  # --------------------------------------------------------
   ## train
   if os.path.isfile(f_clf) == False:
 
-    mlb = MultiLabelBinarizer()
-    mlb.fit([[int(i) for i in range(0, len(int2label))]])
-
-    utt2label = {}
-    print "read", f_utt2label
-    with open(f_utt2label, "r") as f:
-      for line in f:  # e.g., TUR_001_004 1 9
-        inline = line.split()
-        utt = inline[0]
-        utt2label[utt] = mlb.transform([[int(i) for i in inline[1:]]]).flatten()
-
-    #pprint.pprint(utt2label); sys.exit(0);
-    # --------------------------------------------------------
-    # --------------------------------------------------------
-    utt2label_lst = utt2label.keys()
-    random.shuffle(utt2label_lst)
-
-    Y = []
     X_train = []
     for utt in utt2label_lst:
-      Y.append(utt2label[utt])
       X_train.append(utt2feats[utt])
 
-    Y = np.asarray(Y)
     X = np.asarray(X)
     X_train = np.asarray(X_train)
 
     print "Training: Y.shape", Y.shape, "; X.shape", X.shape, "; X_train.shape", X_train.shape
-
+    # --------------------------------------------------------
+    # --------------------------------------------------------
     transformer = TfidfTransformer(norm='l2', use_idf=True, smooth_idf=True)
     transformer.fit(X) #transformer.fit(X_train + X_test)
     X_train = transformer.transform(X_train)
@@ -161,13 +166,14 @@ def main():
     #y_score = (y_score - y_score.min()) / (y_score.max() - y_score.min())
     y_score = y_score[:, :-1] # ignore out-of-domain outputs !
 
-    s_min = copy.deepcopy(y_score.min())
-    s_max = copy.deepcopy(y_score.max())
+    #s_min = copy.deepcopy(y_score.min()); s_max = copy.deepcopy(y_score.max())
+    s_min = -3.0; s_max = 1.0
     for i in range(n_classes - 1):
-      if y_score[:, i].max() - y_score[:, i].min() > 0.001:
-        y_score[:, i] = (y_score[:, i] - s_min) / (s_max - s_min)
+      if np.sum(Y[:, i]) < 0.1:
+        print "no label occurs in train for label:", i
+        y_score[:, i] = s_min
       else:
-        print i, "y_score[:, i].max(), y_score[:, i].min():", y_score[:, i].max(), y_score[:, i].min()
+        y_score[:, i] = (y_score[:, i] - s_min) / (s_max - s_min)
 
     print "y_score:", y_score.shape, y_score.min(), y_score.max()
 
