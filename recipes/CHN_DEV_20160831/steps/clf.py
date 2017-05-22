@@ -170,7 +170,7 @@ def main():
     s_min = -3.0; s_max = 1.0
     for i in range(n_classes - 1):
       if np.sum(Y[:, i]) < 0.1:
-        print "no label occurs in train for label", i, "," int2label[i]
+        print "no label occurs in train for label", i, ",", int2label[i]
         y_score[:, i] = 0.0
       else:
         y_score[:, i] = (y_score[:, i] - s_min) / (s_max - s_min)
