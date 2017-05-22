@@ -47,7 +47,8 @@ if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
     path=`echo $line | awk '{print $2}'`
 
     #echo $line > $root/$fea_dir_decode/${utt}".fea"
-    echo "$utt $kaldi_dir/s5d_lorelei/$path" > $root/$fea_dir_decode/${utt}".fea"
+    #echo "$utt $kaldi_dir/s5d_lorelei/$path" > $root/$fea_dir_decode/${utt}".fea"
+    echo "$DocID $kaldi_dir/s5d_lorelei/$path" > $root/$fea_dir_decode/${DocID}".fea"
   done < $data_dir_bnf/feats_cmvn.scp
 
   popd
