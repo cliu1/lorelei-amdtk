@@ -21,7 +21,7 @@ mkdir -p $fea_dir_decode
 if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
 
   
-  [ ! -d $kaldi_dir ] && cp -r $kaldi_dir/../s5c $kaldi_dir
+  [ ! -d $kaldi_dir ] && cp -r $kaldi_dir/../s5d $kaldi_dir
   pushd $kaldi_dir
 
   L=${decode}_online/$DocID
