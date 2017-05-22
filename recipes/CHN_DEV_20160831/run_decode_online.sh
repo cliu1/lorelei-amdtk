@@ -20,7 +20,9 @@ fea_dir_decode=${fea_dir_decode}_online
 mkdir -p $fea_dir_decode
 if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
 
-  pushd $kaldi_dir || exit 1;
+  
+  [ ! -d $kaldi_dir ] && cp -r $kaldi_dir/../s5c $kaldi_dir
+  pushd $kaldi_dir
 
   L=${decode}_online/$DocID
   data_dir=data/$L/data_conv && mkdir -p $data_dir || exit 1;
