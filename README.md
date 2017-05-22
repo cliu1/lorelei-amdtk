@@ -17,3 +17,8 @@ for recipe in CHN_DEV_20160831 IL3_DEV_20160831; do
 
 done
 
+And multilingual bottleneck model directory:
+
+/export/b04/cliu1/kaldi-multilingual-pegahgh/egs/multi_en/multi-g-ivec-2/exp/nnet3/multi_bnf_lang10__sp
+
+
