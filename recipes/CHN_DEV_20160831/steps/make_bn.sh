@@ -17,7 +17,7 @@ aux_suffix=
 
 corpus=
 
-train_nj=32
+my_nj=32
 
 trap "echo Exited!; exit;" SIGINT SIGTERM
 set -o errtrace
@@ -33,10 +33,16 @@ if [ $# -ne 4 ]; then
     exit 1
 fi
 
+
 multidir=$1
 bnf_layer=$2
 L=$3
 dataset_dir=$4  ## dataset_dir=data/$L/data_conv && mkdir -p $dataset_dir
+
+if [ $# -gt 4 ]; then
+  my_nj=$5
+  export train_cmd=run.pl
+fi
 #####################################################################
 #
 # Audio data directory preparation
@@ -74,7 +80,7 @@ if [ ! -f ${dataset_dir}_hires/.mfcc.done ]; then
     utils/copy_data_dir.sh $dataset_dir ${dataset_dir}_hires
 
     mfccdir=mfcc_hires/$L
-    steps/make_mfcc.sh --nj $train_nj --mfcc-config conf/mfcc_hires.conf \
+    steps/make_mfcc.sh --nj $my_nj --mfcc-config conf/mfcc_hires.conf \
         --cmd "$train_cmd" ${dataset_dir}_hires exp/$L/make_hires/$dataset $mfccdir;
     steps/compute_cmvn_stats.sh ${dataset_dir}_hires exp/$L/make_hires/${dataset} $mfccdir;
     utils/fix_data_dir.sh ${dataset_dir}_hires;
@@ -92,7 +98,7 @@ if [[ "$use_pitch" == "true" || "$use_entropy" == "true" ]]; then
   if $use_pitch; then
     if [ ! -f ${dataset_dir}_pitch/.done ]; then
       utils/copy_data_dir.sh ${dataset_dir} ${dataset_dir}_pitch
-      steps/make_pitch.sh --nj 70 --pitch-config $pitch_conf \
+      steps/make_pitch.sh --nj $my_nj --pitch-config $pitch_conf \
         --cmd "$train_cmd" ${dataset_dir}_pitch exp/$L/make_pitch/${dataset} $pitchdir;
       touch ${dataset_dir}_pitch/.done
     fi
@@ -102,7 +108,7 @@ if [[ "$use_pitch" == "true" || "$use_entropy" == "true" ]]; then
   if $use_entropy; then
     if [ ! -f ${dataset_dir}_entropy/.done ]; then
       utils/copy_data_dir.sh ${dataset_dir} ${dataset_dir}_entropy
-      steps/make_voicing_subband_pitch.sh --nj 70 --voicing-config $voicing_conf \
+      steps/make_voicing_subband_pitch.sh --nj $my_nj --voicing-config $voicing_conf \
         --cmd "$train_cmd" ${dataset_dir}_entropy exp/$L/make_entropy/${dataset} $entropydir;
       touch ${dataset_dir}_entropy/.done
     fi
@@ -111,7 +117,7 @@ if [[ "$use_pitch" == "true" || "$use_entropy" == "true" ]]; then
 
   if $use_pitch && $use_entropy; then
     if [ ! -f ${dataset_dir}_pitch_entropy/.done ]; then
-      steps/append_feats.sh --nj 16 --cmd "$train_cmd" ${dataset_dir}_pitch \
+      steps/append_feats.sh --nj $my_nj --cmd "$train_cmd" ${dataset_dir}_pitch \
         ${dataset_dir}_entropy ${dataset_dir}_pitch_entropy \
         exp/$L/append_entropy_pitch/${dataset} entropy_pitch/$L
       touch ${dataset_dir}_pitch_entropy/.done
@@ -120,7 +126,7 @@ if [[ "$use_pitch" == "true" || "$use_entropy" == "true" ]]; then
   fi
   
   if [ ! -f ${dataset_dir}_hires_mfcc${aux_suffix}/.done ]; then
-    steps/append_feats.sh --nj 16 --cmd "$train_cmd" ${dataset_dir}_hires \
+    steps/append_feats.sh --nj $my_nj --cmd "$train_cmd" ${dataset_dir}_hires \
       ${dataset_dir}${aux_suffix} ${dataset_dir}_hires_mfcc${aux_suffix} \
       exp/$L/append_mfcc${aux_suffix}/${dataset} mfcc_hires${aux_suffix}/$L
  
@@ -137,7 +143,7 @@ if [[ $use_bnf && ! -f $bnf_data_dir/.done ]]; then
 
   echo "Preparing BN features in ${bnf_data_dir} on" `date`
 
-  steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $train_nj --cmd "$train_cmd" \
+  steps/nnet3/make_bottleneck_features.sh --use-gpu true --nj $my_nj --cmd "$train_cmd" \
     renorm${bnf_layer} \
     ${dataset_dir}_hires_mfcc${aux_suffix} $bnf_data_dir $multidir || exit 1; 
 

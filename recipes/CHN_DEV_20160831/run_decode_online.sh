@@ -35,7 +35,7 @@ if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
     . ./path.sh
     . ./cmd.sh
     
-    ./make_bn.sh $multidir $bnf_layer $L $data_dir
+    ./make_bn.sh $multidir $bnf_layer $L $data_dir 1
   fi
   
   data_dir_bnf=${data_dir}_bnf
