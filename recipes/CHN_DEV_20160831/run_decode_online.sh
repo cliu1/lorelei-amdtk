@@ -23,7 +23,7 @@ if [ ! -f $fea_dir_decode/${DocID}.fea ]; then
   
   [ ! -d $kaldi_dir ] && cp -r $kaldi_dir/../s5d $kaldi_dir
   pushd $kaldi_dir
-  cp steps/kaldi_path.sh $kaldi_dir/path.sh 
+  cp $root/steps/kaldi_path.sh $kaldi_dir/path.sh 
 
   L=${decode}_online/$DocID
   data_dir=data/$L/data_conv && mkdir -p $data_dir || exit 1;
