@@ -27,7 +27,7 @@ set -u
 
 
 ####
-if [ $# -ne 4 ]; then
+if [[ ( $# -lt 4 ) || ( $# -gt 6 ) ]]; then
     echo "Usage: $(basename $0) <multidir> <bnf_layer> <L> <dataset_dir>"
     #echo " e.g.: $(basename $0)"
     exit 1
@@ -41,7 +41,7 @@ dataset_dir=$4  ## dataset_dir=data/$L/data_conv && mkdir -p $dataset_dir
 
 if [ $# -gt 4 ]; then
   my_nj=$5
-  export train_cmd=run.pl
+  #export train_cmd=run.pl
 fi
 #####################################################################
 #

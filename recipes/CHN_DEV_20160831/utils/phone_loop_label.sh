@@ -4,7 +4,8 @@
 # Label a data set with the infinite phone-loop model.
 #
 
-if [ $# -ne 3 ]; then
+#if [ $# -ne 3 ]; then
+if [[ ( $# -lt 3 ) || ( $# -gt 4 ) ]]; then
     echo "usage: $0 <setup.sh> <model_dir> <label_dir>"
     exit 1
 fi
