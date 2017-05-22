@@ -42,7 +42,7 @@ if [ ! -e "$label_dir"/.done ]; then
             || exit 1
     done
 
-    date > "$label_dir"/.done
+    #date > "$label_dir"/.done
 else
     echo "The labeling has already been done. Skipping."
 fi
